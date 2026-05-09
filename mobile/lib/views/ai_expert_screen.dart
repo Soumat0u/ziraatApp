@@ -111,10 +111,12 @@ class _AIExpertScreenState extends State<AIExpertScreen> with TickerProviderStat
       appBar: AppBar(
         backgroundColor: AppTheme.backgroundLight,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18, color: AppTheme.primaryGreen),
-          onPressed: () => Navigator.pop(context),
-        ),
+        leading: Navigator.canPop(context) 
+          ? IconButton(
+              icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18, color: AppTheme.primaryGreen),
+              onPressed: () => Navigator.pop(context),
+            )
+          : null,
         title: Row(
           children: [
             Container(

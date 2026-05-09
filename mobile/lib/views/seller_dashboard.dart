@@ -118,30 +118,6 @@ class _SellerDashboardScreenState extends State<SellerDashboardScreen> {
                             child: const Icon(Icons.person_search_rounded, color: AppTheme.primaryGreen, size: 20),
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [AppTheme.primaryGreen, AppTheme.leafGreen],
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(Icons.add, color: Colors.white, size: 18),
-                              const SizedBox(width: 4),
-                              Text(
-                                'Ürün Ekle',
-                                style: GoogleFonts.inter(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 13,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -216,6 +192,23 @@ class _SellerDashboardScreenState extends State<SellerDashboardScreen> {
             ),
             const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            HapticFeedback.mediumImpact();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: const Text('Ürün ekleme ekranı yakında!'),
+                backgroundColor: AppTheme.primaryGreen,
+                behavior: SnackBarBehavior.floating,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              ),
+            );
+          },
+          backgroundColor: AppTheme.primaryGreen,
+          elevation: 4,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          child: const Icon(Icons.add_rounded, color: Colors.white, size: 30),
         ),
       ),
     );

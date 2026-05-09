@@ -52,6 +52,7 @@ class _MainShellState extends State<MainShell> {
       SellerDashboardScreen(onToggleRole: _onToggleRole),
       const OrdersScreen(),
       const ProfileScreen(),
+      const AIExpertScreen(),
     ];
 
     return Scaffold(
@@ -77,10 +78,9 @@ class _MainShellState extends State<MainShell> {
               children: [
                 _navItem(index: 0, icon: Icons.home_rounded, label: 'Ürünler'),
                 _navItem(
-                  index: 99, // Special index for AI
+                  index: 4,
                   icon: Icons.smart_toy_outlined,
                   label: 'Ziraat AI',
-                  isAI: true,
                 ),
                 _navItem(index: 2, icon: Icons.shopping_bag_outlined, label: 'Siparişlerim'),
                 _navItem(index: 3, icon: Icons.person_outline_rounded, label: 'Hesabım'),
@@ -92,20 +92,15 @@ class _MainShellState extends State<MainShell> {
     );
   }
 
-  Widget _navItem({required int index, required IconData icon, required String label, bool isAI = false}) {
-    final isActive = !isAI && _currentIndex == index;
+  Widget _navItem({required int index, required IconData icon, required String label}) {
+    final isActive = (index == 0) 
+        ? (_currentIndex == 0 || _currentIndex == 1) 
+        : (_currentIndex == index);
     return Expanded(
       child: GestureDetector(
         onTap: () {
           HapticFeedback.selectionClick();
-          if (isAI) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const AIExpertScreen()),
-            );
-          } else {
-            setState(() => _currentIndex = index);
-          }
+          setState(() => _currentIndex = index);
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),

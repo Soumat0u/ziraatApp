@@ -107,9 +107,9 @@ class _AIExpertScreenState extends State<AIExpertScreen> with TickerProviderStat
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundGray,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: AppTheme.backgroundLight,
+        backgroundColor: Theme.of(context).cardColor,
         elevation: 0,
         leading: Navigator.canPop(context) 
           ? IconButton(
@@ -139,14 +139,14 @@ class _AIExpertScreenState extends State<AIExpertScreen> with TickerProviderStat
                   style: GoogleFonts.inter(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: AppTheme.textPrimary,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 Text(
                   _isLoading ? 'Düşünüyor...' : 'Tarım Uzmanı AI',
                   style: GoogleFonts.inter(
                     fontSize: 11,
-                    color: _isLoading ? AppTheme.leafGreen : AppTheme.textSecondary,
+                    color: _isLoading ? AppTheme.leafGreen : Theme.of(context).colorScheme.onSurfaceVariant,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -175,7 +175,7 @@ class _AIExpertScreenState extends State<AIExpertScreen> with TickerProviderStat
           // Input Bar
           Container(
             decoration: BoxDecoration(
-              color: AppTheme.backgroundLight,
+              color: Theme.of(context).cardColor,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.06),
@@ -193,18 +193,18 @@ class _AIExpertScreenState extends State<AIExpertScreen> with TickerProviderStat
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
-                          color: AppTheme.backgroundGray,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.circular(24),
                         ),
                         child: TextField(
                           controller: _controller,
-                          style: GoogleFonts.inter(fontSize: 14, color: AppTheme.textPrimary),
+                          style: GoogleFonts.inter(fontSize: 14, color: Theme.of(context).colorScheme.onSurface),
                           maxLines: 3,
                           minLines: 1,
                           textCapitalization: TextCapitalization.sentences,
                           decoration: InputDecoration(
                             hintText: 'Sorunuzu yazın...',
-                            hintStyle: GoogleFonts.inter(color: AppTheme.textSecondary, fontSize: 14),
+                            hintStyle: GoogleFonts.inter(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 14),
                             border: InputBorder.none,
                             contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                           ),
@@ -281,7 +281,7 @@ class _AIExpertScreenState extends State<AIExpertScreen> with TickerProviderStat
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   decoration: BoxDecoration(
-                    color: isUser ? AppTheme.primaryGreen : AppTheme.backgroundLight,
+                    color: isUser ? AppTheme.primaryGreen : Theme.of(context).cardColor,
                     borderRadius: BorderRadius.only(
                       topLeft: const Radius.circular(18),
                       topRight: const Radius.circular(18),
@@ -300,7 +300,7 @@ class _AIExpertScreenState extends State<AIExpertScreen> with TickerProviderStat
                     message.text,
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      color: isUser ? Colors.white : AppTheme.textPrimary,
+                      color: isUser ? Colors.white : Theme.of(context).colorScheme.onSurface,
                       height: 1.5,
                     ),
                   ),
@@ -328,7 +328,7 @@ class _AIExpertScreenState extends State<AIExpertScreen> with TickerProviderStat
                   padding: const EdgeInsets.only(top: 4),
                   child: Text(
                     '${message.timestamp.hour.toString().padLeft(2, '0')}:${message.timestamp.minute.toString().padLeft(2, '0')}',
-                    style: GoogleFonts.inter(fontSize: 10, color: AppTheme.textSecondary),
+                    style: GoogleFonts.inter(fontSize: 10, color: Theme.of(context).colorScheme.onSurfaceVariant),
                   ),
                 ),
               ],
@@ -362,7 +362,7 @@ class _AIExpertScreenState extends State<AIExpertScreen> with TickerProviderStat
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
             decoration: BoxDecoration(
-              color: AppTheme.backgroundLight,
+              color: Theme.of(context).cardColor,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(18),
                 topRight: Radius.circular(18),

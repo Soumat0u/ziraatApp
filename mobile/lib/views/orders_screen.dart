@@ -36,45 +36,45 @@ class OrdersScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundGray,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: AppTheme.backgroundLight,
+        backgroundColor: Theme.of(context).cardColor,
         elevation: 0,
         centerTitle: true,
         title: Text(
           'Siparişlerim',
           style: GoogleFonts.inter(
-            color: AppTheme.textPrimary,
+            color: Theme.of(context).colorScheme.onSurface,
             fontWeight: FontWeight.w700,
             fontSize: 18,
           ),
         ),
       ),
       body: orders.isEmpty
-          ? _buildEmptyState()
+          ? _buildEmptyState(context)
           : ListView.builder(
               padding: const EdgeInsets.all(16),
               itemCount: orders.length,
               itemBuilder: (context, index) {
                 final order = orders[index];
-                return _buildOrderCard(order);
+                return _buildOrderCard(context, order);
               },
             ),
     );
   }
 
-  Widget _buildEmptyState() {
+  Widget _buildEmptyState(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.shopping_basket_outlined, size: 80, color: Colors.grey.shade300),
+          Icon(Icons.shopping_basket_outlined, size: 80, color: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.3)),
           const SizedBox(height: 16),
           Text(
             'Henüz siparişiniz yok',
             style: GoogleFonts.inter(
               fontSize: 16,
-              color: AppTheme.textSecondary,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -83,11 +83,11 @@ class OrdersScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildOrderCard(Map<String, dynamic> order) {
+  Widget _buildOrderCard(BuildContext context, Map<String, dynamic> order) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: AppTheme.backgroundLight,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -123,14 +123,14 @@ class OrdersScreen extends StatelessWidget {
                           'Sipariş #${order['id']}',
                           style: GoogleFonts.inter(
                             fontWeight: FontWeight.w700,
-                            color: AppTheme.textPrimary,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                         Text(
                           order['date'],
                           style: GoogleFonts.inter(
                             fontSize: 12,
-                            color: AppTheme.textSecondary,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ],
@@ -167,7 +167,7 @@ class OrdersScreen extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.inter(
                         fontSize: 13,
-                        color: AppTheme.textSecondary,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ),
@@ -184,14 +184,14 @@ class OrdersScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 12),
-              color: Colors.grey.shade50,
+              color: Theme.of(context).scaffoldBackgroundColor,
               child: Center(
                 child: Text(
                   'Detayları Görüntüle',
                   style: GoogleFonts.inter(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.textSecondary,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
               ),

@@ -1,9 +1,10 @@
-from rest_framework import viewsets, permissions, status
+from rest_framework import viewsets, permissions, status, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import Category, Product, SellerInventory, Notification
+from .models import Category, Plant, Medicine, SellerInventory, Notification
 from .serializers import (
-    CategorySerializer, ProductSerializer, 
+    CategorySerializer, PlantSerializer, MedicineSerializer,
     SellerInventorySerializer, InventoryUpdateSerializer, NotificationSerializer
 )
 
@@ -11,17 +12,31 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class ProductViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+class PlantViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Plant.objects.all()
+    serializer_class = PlantSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = ['category']
+    search_fields = ['plant_name', 'disease_name', 'active_ingredient']
+    ordering_fields = ['plant_name', 'disease_name']
+    ordering = ['plant_name']
+
+class MedicineViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Medicine.objects.all()
+    serializer_class = MedicineSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = ['category']
+    search_fields = ['name', 'active_ingredient', 'formulation']
+    ordering_fields = ['name', 'active_ingredient']
+    ordering = ['name']
 
 class SellerInventoryViewSet(viewsets.ModelViewSet):
     serializer_class = SellerInventorySerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['medicine__category']
+    search_fields = ['medicine__name', 'medicine__active_ingredient']
     
     def get_queryset(self):
-        user = self.request.user
-        if user.is_authenticated and user.role == 'SELLER':
-            return SellerInventory.objects.filter(seller=user)
         return SellerInventory.objects.all()
 
     def update(self, request, *args, **kwargs):
@@ -36,7 +51,6 @@ class SellerInventoryViewSet(viewsets.ModelViewSet):
 
 class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = NotificationSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return Notification.objects.filter(user=self.request.user).order_by('-created_at')
+        return Notification.objects.all().order_by('-created_at')

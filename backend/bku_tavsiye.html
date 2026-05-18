@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitki Koruma &#220;r&#252;nleri Veri Tabanı</title>
+
+    <link href="/Content/css?v=vzWj57oXX3IQI--sKAjRbBrj2Xa89iRkJP3-WLYJZEk1" rel="stylesheet"/>
+
+
+ 
+
+</head>
+<body>
+
+        <div class="container-fluid">
+            <div class="container text-left">
+                <img class="img-thumbnail col-md-8" style="background-color: transparent; border: none; padding: 0px" src="/Content/Resimler/tarim_header4.png" />
+
+                <ul class="list-inline">
+                    <li><span class="glyphicon glyphicon-globe"></span> <a href="/Kultur/Turkce">Türkçe</a>&nbsp;&nbsp;|</li>
+                    <li><a href="/Kultur/Ingilizce">English</a></li>
+                </ul>
+            </div>
+
+            <nav class="navbar navbar-default container">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand">Bk&#252; Veri Tabanı</a>
+
+                    </div>
+
+                    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">
+
+
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a class="btn btn-link" style="text-align: left" href="/Duyuru/Bulten">
+                                    <span class="glyphicon glyphicon-home">&ensp;</span>Ana Sayfa
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="btn btn-link" style="text-align: left" href="/Kullanim/TavsiyeAlternatif">
+                                    <span class="glyphicon glyphicon-search">&ensp;</span>Tavsiye Alternatif
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a class="btn btn-link" style="text-align: left" href="/Kullanim/TavsiyeArama">
+                                    <span class="glyphicon glyphicon-search">&ensp;</span>Tavsiye Arama
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="btn btn-link" style="text-align: left" href="/Arama/Index">
+                                    <span class="glyphicon glyphicon-search">&ensp;</span>Arama Motoru
+                                </a>
+                            </li>
+
+
+                            <li class="dropdown">
+
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" role="button" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-tags">&ensp;</span> Ruhsat <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="/BKURuhsat/Index">
+                                            <span class="glyphicon glyphicon-search">&ensp;</span>Ruhsat Detaylı Arama
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/BKUGeciciTavsiyeAlanlar/GeciciTavsiyeIndeks">
+                                            <span class="glyphicon glyphicon-exclamation-sign">&ensp;</span>Ge&#231;ici Tavsiyeler
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/MRLOrani/Index">
+                                            <span class="glyphicon glyphicon-stats">&ensp;</span>MRL Oranları
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/BKURuhsat/RafOmruSure">
+                                            <span class="glyphicon glyphicon-time">&ensp;</span>Raf &#214;mr&#252; S&#252;re
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/BiyolojikMucadeleEtmeniRuhsat/BiyolojikMucadeleEtmeniRuhsatListe"><span class="glyphicon glyphicon-fire">&ensp;</span>Biyolojik Mücadele Etmeni Ruhsatları</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" role="button" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-book">&ensp;</span> Dok&#252;man <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+
+                                    <li>
+                                        <a href="/YararlanilacakKaynak/Liste">
+                                            <span class="glyphicon glyphicon-book">&ensp;</span>Kaynaklar
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/AktifMadde/YasakliKisitliExcelFileList">
+                                            <span class="glyphicon glyphicon-download">&ensp;</span>Yasaklı Aktif Maddeler
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+
+
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" role="button" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-pencil">&ensp;</span> İletişim <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+
+                                    <li>
+                                        <a href="/GorusOneri/Create">
+                                            <span class="glyphicon glyphicon-comment">&ensp;</span>G&#246;r&#252;ş-&#214;neri
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/GorusOneri/SizdenGelenler">
+                                            <span class="glyphicon glyphicon-envelope">&ensp;</span>Sizden Gelenler
+                                        </a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="/Duyuru/DuyuruListe">
+                                            <span class="glyphicon glyphicon-bullhorn">&ensp;</span>Duyurular
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/Yenilik/Index">
+                                            <span class="glyphicon glyphicon-flash">&ensp;</span>Yenilikler
+                                        </a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="/Home/MobilUygulama">
+                                            <span class="glyphicon glyphicon-phone">&ensp;</span> Mobil Uygulamalarımız
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+            <h2 class="container">Tavsiye Arama</h2>
+
+
+            <div class="container body-content">
+                
+
+
+<link href="/Content/select2.css" rel="stylesheet"/>
+
+<link href="/Content/datatables/css?v=Fdm9ITl1ydpAGK0xtAtLBirSlAb2FMdx15Gt2L-Xq0w1" rel="stylesheet"/>
+
+<hr/>
+
+<form action="/Kullanim/TavsiyeArama" data-ajax="true" data-ajax-complete="onBasarili" data-ajax-method="POST" id="form0" method="post"><input name="__RequestVerificationToken" type="hidden" value="Rj3qomenNJHiK-Dsti_ErQsn8eY_s4b_JICXugtdiezyPzQkEBH5l8zh6YbasxWbp_xm4iP8itjgkDFFHSRsDjPJZcUJtjyX2AFb34lbe081" />    <div class="row">
+        
+        <div class="col-xs-12 col-lg-7">
+            <select class="form-control" id="ddlCars" multiple="multiple" name="Filtre.SeciliAramalar" placeholder="Mrl Ürün, Bitki, Zararlı, Aktif Madde Grup, Aktif Madde, Ruhsat veya Formulasyon" style="width: 100%"></select>
+        </div>
+
+        <div class="form-group col-xs-8 col-md-3 col-lg-3">
+            <select class="form-control" data-val="true" data-val-number="The field SecilenRuhsatGrupId must be a number." data-val-required="The SecilenRuhsatGrupId field is required." id="Filtre_SecilenRuhsatGrupId" name="Filtre.SecilenRuhsatGrupId"><option selected="selected" value="-1">RUHSAT GRUBU</option>
+<option value="6">Akarisit</option>
+<option value="60">Akarisit + Nematisit</option>
+<option value="3">Beslenmeyi Engelleyici</option>
+<option value="14">Bitki Aktivat&#246;r&#252;</option>
+<option value="1">Bitki Gelişim D&#252;zenleyicisi (BGD)</option>
+<option value="59">Biyolojik Fungisit</option>
+<option value="62">Biyolojik Fungisit + BGD</option>
+<option value="9">Biyolojik İnsektisit</option>
+<option value="19">Biyolojik M&#252;cadele Etmeni</option>
+<option value="55">Biyolojik M&#252;cadele Etmeni (Entomopatojen Nematod)</option>
+<option value="18">Biyopreparat</option>
+<option value="11">B&#246;cek Gelişimi D&#252;zenleyici(IGR)</option>
+<option value="15">B&#246;cek Uzaklaştırıcı(Repellentler)</option>
+<option value="67">Broflanilide</option>
+<option value="20">Cezbedici </option>
+<option value="35">Cezbedici + Tuzak</option>
+<option value="30">Defoliant (Yaprak D&#246;k&#252;c&#252;)</option>
+<option value="12">Defoliant (Yaprak D&#246;k&#252;c&#252;-Koza A&#231;tırıcı )</option>
+<option value="25">Demirli Bileşik</option>
+<option value="64">Desikant</option>
+<option value="23">Feromon</option>
+<option value="4">Feromon+Tuzak</option>
+<option value="21">Fumigant</option>
+<option value="17">Fungisit</option>
+<option value="51">Fungisit + Akarisit</option>
+<option value="52">Fungisit + BGD</option>
+<option value="22">Herbisit</option>
+<option value="53">Herbisit + BGD</option>
+<option value="66">Herbisit + Defoliant</option>
+<option value="56">Herbisit + Desikant</option>
+<option value="68">Herbisit + Desikant + Defoliant</option>
+<option value="8">İnsektisit</option>
+<option value="16">İnsektisit+Akarisit</option>
+<option value="69">Kairomon</option>
+<option value="70">Kairomon + Tuzak</option>
+<option value="7">Mollussisit</option>
+<option value="2">Nematisit</option>
+<option value="50">Nematisit+Fungisit</option>
+<option value="26">Nematisit+İnsektisit</option>
+<option value="5">Parazitoit</option>
+<option value="13">Predat&#246;r</option>
+<option value="10">Rodentisit</option>
+<option value="24">Tuzak</option>
+</select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="Filtre.SecilenRuhsatGrupId" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-xs-4 col-lg-2">
+            <button type="submit" accept="true" class="btn btn-primary btn-block">
+                <span class="glyphicon glyphicon-search"></span>&nbsp; <b>Bul</b>
+            </button>
+        </div>
+    </div>
+</form>
+
+<br />
+
+    <table id="tablo" class="table table-striped bg-info dt-responsive" style="width: 100%">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+
+<br/>
+<br/>
+<br/>
+
+
+                <div class="navbar-fixed-bottom text-left ozel-bottom">
+
+                    <div class="container" style="opacity: .6;">
+                        T&#252;m Hakları Saklıdır &copy; 2015-2026 | T.C. Tarım ve Orman Bakanlığı Bitki Koruma &#220;r&#252;nleri Daire Başkanlığı tarafından yapılmıştır.
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+    <script src="/bundles/jquery?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
+
+    <script src="/bundles/bootstrap?v=gaS8ksF0U8YYRyqGHTWvkSNiIzbtTYXNIS5RdRDV8O01"></script>
+
+    
+    <script src="/bundles/unobtrusiveajax?v=Xuam6TWPhcGt1QT7p5fexG3T-XZA9hjh88zJ89jkDQQ1"></script>
+
+
+    <script src="/bundles/select2?v=o0ow8MLcBD_MvrSxY7QJr8Q_5Uc3w8F86dvh37-fy5U1"></script>
+
+
+    <script src="/bundles/datatablesTemelParcalar?v=aUjvWF8Lv664zE_2d5xGB-41vKFlWZpOhnpM_pQaFP81"></script>
+
+
+    <script src="/bundles/datatables2?v=5BCX7Bmmfv68_Af5nwPzJRH8CEXIKO6SvS0dWgg5ny01"></script>
+
+
+    <script src="/Scripts/TypeScriptKodlari/tarihMetodlari.js"></script>
+    <script src="/Scripts/TypeScriptKodlari/Tavsiye/tavsiyeArama.js"></script>      
+
+    <script>
+        var dataKey = "tavsiyeArama";  
+    </script>
+
+</body>
+</html>
+
+
+
+

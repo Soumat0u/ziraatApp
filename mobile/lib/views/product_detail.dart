@@ -88,7 +88,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
-        backgroundColor: AppTheme.backgroundGray,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Stack(
           children: [
             CustomScrollView(
@@ -106,7 +106,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
-                      color: AppTheme.backgroundLight,
+                      color: Theme.of(context).cardColor,
                     ),
                     child: Stack(
                       children: [
@@ -135,35 +135,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             ),
                           ),
                         ),
-                        // Back button
-                        SafeArea(
-                          bottom: false,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: GestureDetector(
-                              onTap: () => Navigator.pop(context),
-                              child: Container(
-                                width: 42,
-                                height: 42,
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.9),
-                                  borderRadius: BorderRadius.circular(14),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.08),
-                                      blurRadius: 12,
-                                    ),
-                                  ],
-                                ),
-                                child: const Icon(
-                                  Icons.arrow_back_ios_new_rounded,
-                                  size: 18,
-                                  color: AppTheme.primaryGreen,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
                         // Product emoji
                         const Center(
                           child: Text('🌱', style: TextStyle(fontSize: 90)),
@@ -176,8 +147,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 // Content
                 SliverToBoxAdapter(
                   child: Container(
-                    decoration: const BoxDecoration(
-                      color: AppTheme.backgroundGray,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).scaffoldBackgroundColor,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(20, 24, 20, 180),
@@ -208,7 +179,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             style: GoogleFonts.inter(
                               fontSize: 26,
                               fontWeight: FontWeight.w800,
-                              color: AppTheme.textPrimary,
+                              color: Theme.of(context).colorScheme.onSurface,
                               letterSpacing: -0.5,
                             ),
                           ),
@@ -217,7 +188,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             'Etken Madde: ${widget.product['ingredient']}',
                             style: GoogleFonts.inter(
                               fontSize: 14,
-                              color: AppTheme.textSecondary,
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
                             ),
                           ),
                           const SizedBox(height: 12),
@@ -308,16 +279,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             style: GoogleFonts.inter(
                               fontSize: 17,
                               fontWeight: FontWeight.w700,
-                              color: AppTheme.textPrimary,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                           const SizedBox(height: 12),
                           Container(
                             padding: const EdgeInsets.all(18),
                             decoration: BoxDecoration(
-                              color: AppTheme.backgroundLight,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: Colors.grey.shade100),
+                              border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.05)),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withOpacity(0.03),
@@ -330,7 +301,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               children: [
                                 Text(
                                   'Arazi büyüklüğünü girerek gerekli ilaç miktarını hesaplayın.',
-                                  style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary),
+                                  style: GoogleFonts.inter(fontSize: 13, color: Theme.of(context).colorScheme.onSurfaceVariant),
                                 ),
                                 const SizedBox(height: 16),
                                 Row(
@@ -377,15 +348,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             style: GoogleFonts.inter(
                               fontSize: 17,
                               fontWeight: FontWeight.w700,
-                              color: AppTheme.textPrimary,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                           const SizedBox(height: 12),
                           Container(
                             decoration: BoxDecoration(
-                              color: AppTheme.backgroundLight,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: Colors.grey.shade100),
+                              border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.05)),
                             ),
                             child: Column(
                               children: [
@@ -407,16 +378,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             style: GoogleFonts.inter(
                               fontSize: 17,
                               fontWeight: FontWeight.w700,
-                              color: AppTheme.textPrimary,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                           const SizedBox(height: 12),
                           Container(
                             padding: const EdgeInsets.all(18),
                             decoration: BoxDecoration(
-                              color: AppTheme.backgroundLight,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: Colors.grey.shade100),
+                              border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.05)),
                             ),
                             child: Text(
                               'Damlama sulama sistemleri ile dönüme 2-3 kg uygulanır. '
@@ -426,7 +397,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               style: GoogleFonts.inter(
                                 fontSize: 15,
                                 height: 1.7,
-                                color: AppTheme.textSecondary,
+                                color: Theme.of(context).colorScheme.onSurfaceVariant,
                               ),
                             ),
                           ),
@@ -438,7 +409,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             style: GoogleFonts.inter(
                               fontSize: 17,
                               fontWeight: FontWeight.w700,
-                              color: AppTheme.textPrimary,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                           const SizedBox(height: 12),
@@ -454,6 +425,35 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ],
             ),
 
+            // Fixed Back Button
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    width: 42,
+                    height: 42,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor.withOpacity(0.9),
+                      borderRadius: BorderRadius.circular(14),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.08),
+                          blurRadius: 12,
+                        ),
+                      ],
+                    ),
+                    child: const Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      size: 18,
+                      color: AppTheme.primaryGreen,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
             // Fixed Bottom Bar (WhatsApp)
             Positioned(
               bottom: 0,
@@ -467,7 +467,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   MediaQuery.of(context).padding.bottom + 16,
                 ),
                 decoration: BoxDecoration(
-                  color: AppTheme.backgroundLight,
+                  color: Theme.of(context).cardColor,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.08),
@@ -535,7 +535,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(name, style: GoogleFonts.inter(fontSize: 14, color: AppTheme.textPrimary)),
+          Text(name, style: GoogleFonts.inter(fontSize: 14, color: Theme.of(context).colorScheme.onSurface)),
           Row(
             children: [
               Icon(
@@ -563,9 +563,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.backgroundLight,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.shade100),
+        border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.05)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -592,7 +592,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           const SizedBox(height: 12),
           Text(
             comment,
-            style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary, height: 1.5),
+            style: GoogleFonts.inter(fontSize: 13, color: Theme.of(context).colorScheme.onSurfaceVariant, height: 1.5),
           ),
         ],
       ),
@@ -609,7 +609,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.backgroundLight,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -629,7 +629,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               Text(
                 label,
                 style: GoogleFonts.inter(
-                  color: AppTheme.textSecondary,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontSize: 11,
                   fontWeight: FontWeight.w500,
                 ),
@@ -651,7 +651,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           Text(
             unit,
             style: GoogleFonts.inter(
-              color: AppTheme.textSecondary,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               fontSize: 11,
             ),
           ),

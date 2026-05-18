@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'corsheaders',
     'api',
 ]
@@ -79,10 +80,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ziraat_db',
-        'USER': 'ziraat_user',
-        'PASSWORD': 'sifreniz',
-        'HOST': 'localhost',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '1q.2w.3e.4r',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
@@ -128,7 +129,6 @@ import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-AUTH_USER_MODEL = 'api.User'
 CORS_ALLOW_ALL_ORIGINS = True
 
 # ===== GEMINI AI YAPILANDIRMASI =====

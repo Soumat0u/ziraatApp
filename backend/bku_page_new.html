@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitki Koruma &#220;r&#252;nleri Veri Tabanı</title>
+
+    <link href="/Content/css?v=vzWj57oXX3IQI--sKAjRbBrj2Xa89iRkJP3-WLYJZEk1" rel="stylesheet"/>
+
+
+ 
+
+</head>
+<body>
+
+        <div class="container-fluid">
+            <div class="container text-left">
+                <img class="img-thumbnail col-md-8" style="background-color: transparent; border: none; padding: 0px" src="/Content/Resimler/tarim_header4.png" />
+
+                <ul class="list-inline">
+                    <li><span class="glyphicon glyphicon-globe"></span> <a href="/Kultur/Turkce">Türkçe</a>&nbsp;&nbsp;|</li>
+                    <li><a href="/Kultur/Ingilizce">English</a></li>
+                </ul>
+            </div>
+
+            <nav class="navbar navbar-default container">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand">Bk&#252; Veri Tabanı</a>
+
+                    </div>
+
+                    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">
+
+
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a class="btn btn-link" style="text-align: left" href="/Duyuru/Bulten">
+                                    <span class="glyphicon glyphicon-home">&ensp;</span>Ana Sayfa
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="btn btn-link" style="text-align: left" href="/Kullanim/TavsiyeAlternatif">
+                                    <span class="glyphicon glyphicon-search">&ensp;</span>Tavsiye Alternatif
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a class="btn btn-link" style="text-align: left" href="/Kullanim/TavsiyeArama">
+                                    <span class="glyphicon glyphicon-search">&ensp;</span>Tavsiye Arama
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="btn btn-link" style="text-align: left" href="/Arama/Index">
+                                    <span class="glyphicon glyphicon-search">&ensp;</span>Arama Motoru
+                                </a>
+                            </li>
+
+
+                            <li class="dropdown">
+
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" role="button" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-tags">&ensp;</span> Ruhsat <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="/BKURuhsat/Index">
+                                            <span class="glyphicon glyphicon-search">&ensp;</span>Ruhsat Detaylı Arama
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/BKUGeciciTavsiyeAlanlar/GeciciTavsiyeIndeks">
+                                            <span class="glyphicon glyphicon-exclamation-sign">&ensp;</span>Ge&#231;ici Tavsiyeler
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/MRLOrani/Index">
+                                            <span class="glyphicon glyphicon-stats">&ensp;</span>MRL Oranları
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/BKURuhsat/RafOmruSure">
+                                            <span class="glyphicon glyphicon-time">&ensp;</span>Raf &#214;mr&#252; S&#252;re
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/BiyolojikMucadeleEtmeniRuhsat/BiyolojikMucadeleEtmeniRuhsatListe"><span class="glyphicon glyphicon-fire">&ensp;</span>Biyolojik Mücadele Etmeni Ruhsatları</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" role="button" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-book">&ensp;</span> Dok&#252;man <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+
+                                    <li>
+                                        <a href="/YararlanilacakKaynak/Liste">
+                                            <span class="glyphicon glyphicon-book">&ensp;</span>Kaynaklar
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/AktifMadde/YasakliKisitliExcelFileList">
+                                            <span class="glyphicon glyphicon-download">&ensp;</span>Yasaklı Aktif Maddeler
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+
+
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" role="button" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-pencil">&ensp;</span> İletişim <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+
+                                    <li>
+                                        <a href="/GorusOneri/Create">
+                                            <span class="glyphicon glyphicon-comment">&ensp;</span>G&#246;r&#252;ş-&#214;neri
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/GorusOneri/SizdenGelenler">
+                                            <span class="glyphicon glyphicon-envelope">&ensp;</span>Sizden Gelenler
+                                        </a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="/Duyuru/DuyuruListe">
+                                            <span class="glyphicon glyphicon-bullhorn">&ensp;</span>Duyurular
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/Yenilik/Index">
+                                            <span class="glyphicon glyphicon-flash">&ensp;</span>Yenilikler
+                                        </a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="/Home/MobilUygulama">
+                                            <span class="glyphicon glyphicon-phone">&ensp;</span> Mobil Uygulamalarımız
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+            <h2 class="container">Bitki Koruma &#220;r&#252;n Ruhsatları</h2>
+
+
+            <div class="container body-content">
+                
+
+
+
+<link href="/Content/select2.css" rel="stylesheet" />
+
+<link href="/Content/datatables/css?v=Fdm9ITl1ydpAGK0xtAtLBirSlAb2FMdx15Gt2L-Xq0w1" rel="stylesheet"/>
+
+
+<br />
+
+<form action="/BKURuhsat/Index" data-ajax="true" data-ajax-complete="onBasarili" data-ajax-method="POST" id="form0" method="post"><input name="__RequestVerificationToken" type="hidden" value="mfQbIBuvUcCRtSl9TUyJllqOyfwQBAJQO8whDRKGGsry77FxYH24QascZ0QGNrHasKO0JwVfeCowXML02NJpiEw_tBsjALl_T9cSq3iSwko1" />    <div class="row">
+
+        <div class="col-xs-12 col-lg-8">
+            <select class="form-control" id="ddlCars" multiple="multiple" name="Filtre.SeciliAramalar" placeholder="Ruhsat, Aktif Madde, Ruhsat Sahibi Firma, Formulasyon, Bitki, Zararlı Organizma" style="width: 100%"></select>
+        </div>
+
+        <div class="col-xs-6 col-lg-2">
+            <input class="form-control text-box single-line" data-val="true" data-val-number="The field RuhsatNo must be a number." data-val-required="The RuhsatNo field is required." id="Filtre_RuhsatNo" name="Filtre.RuhsatNo" placeholder="Ruhsat No" type="number" value="" />
+        </div>
+
+
+        <div class="col-xs-6 col-lg-2">
+            <button type="submit" accept="true" class="btn btn-primary btn-block">
+                <span class="glyphicon glyphicon-search"></span>&nbsp; <b>Bul</b>
+            </button>
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+
+        <div class="form-group col-md-2" style="width:20.83%">
+            <select class="form-control" data-val="true" data-val-number="The field RuhsatGrupId must be a number." data-val-required="The RuhsatGrupId field is required." id="Filtre_RuhsatGrupId" name="Filtre.RuhsatGrupId"><option value="0">RUHSAT GRUBU SE&#199;İNİZ</option>
+<option value="6">Akarisit</option>
+<option value="60">Akarisit + Nematisit</option>
+<option value="14">Bitki Aktivat&#246;r&#252;</option>
+<option value="1">Bitki Gelişim D&#252;zenleyicisi (BGD)</option>
+<option value="59">Biyolojik Fungisit</option>
+<option value="62">Biyolojik Fungisit + BGD</option>
+<option value="9">Biyolojik İnsektisit</option>
+<option value="19">Biyolojik M&#252;cadele Etmeni</option>
+<option value="55">Biyolojik M&#252;cadele Etmeni (Entomopatojen Nematod)</option>
+<option value="20">Cezbedici </option>
+<option value="35">Cezbedici + Tuzak</option>
+<option value="30">Defoliant (Yaprak D&#246;k&#252;c&#252;)</option>
+<option value="12">Defoliant (Yaprak D&#246;k&#252;c&#252;-Koza A&#231;tırıcı )</option>
+<option value="25">Demirli Bileşik</option>
+<option value="64">Desikant</option>
+<option value="23">Feromon</option>
+<option value="4">Feromon+Tuzak</option>
+<option value="21">Fumigant</option>
+<option value="17">Fungisit</option>
+<option value="51">Fungisit + Akarisit</option>
+<option value="52">Fungisit + BGD</option>
+<option value="22">Herbisit</option>
+<option value="53">Herbisit + BGD</option>
+<option value="66">Herbisit + Defoliant</option>
+<option value="56">Herbisit + Desikant</option>
+<option value="8">İnsektisit</option>
+<option value="16">İnsektisit+Akarisit</option>
+<option value="69">Kairomon</option>
+<option value="7">Mollussisit</option>
+<option value="2">Nematisit</option>
+<option value="50">Nematisit+Fungisit</option>
+<option value="26">Nematisit+İnsektisit</option>
+<option value="10">Rodentisit</option>
+<option value="24">Tuzak</option>
+</select>
+        </div>
+
+        <div class="form-group col-md-1" style="width:10.41%">
+            <select class="form-control" data-val="true" data-val-number="The field Yil must be a number." data-val-required="The Yil field is required." id="Filtre_Yil" name="Filtre.Yil"><option value="0">YIL</option>
+<option value="2026">2026</option>
+<option value="2025">2025</option>
+<option value="2024">2024</option>
+<option value="2023">2023</option>
+<option value="2022">2022</option>
+<option value="2021">2021</option>
+<option value="2020">2020</option>
+<option value="2019">2019</option>
+<option value="2018">2018</option>
+<option value="2017">2017</option>
+<option value="2016">2016</option>
+<option value="2015">2015</option>
+<option value="2014">2014</option>
+<option value="2013">2013</option>
+<option value="2012">2012</option>
+<option value="2011">2011</option>
+<option value="2010">2010</option>
+<option value="2009">2009</option>
+<option value="2008">2008</option>
+<option value="2007">2007</option>
+<option value="2006">2006</option>
+<option value="2005">2005</option>
+<option value="2004">2004</option>
+<option value="2003">2003</option>
+<option value="2002">2002</option>
+<option value="2001">2001</option>
+<option value="2000">2000</option>
+<option value="1999">1999</option>
+</select>
+        </div>
+
+        <div class="form-group col-md-1" style="width:10.41%">
+            <select class="form-control" data-val="true" data-val-number="The field Ay must be a number." data-val-required="The Ay field is required." id="Filtre_Ay" name="Filtre.Ay"><option value="0">AY SE&#199;İNİZ</option>
+<option value="1">Ocak</option>
+<option value="2">Şubat</option>
+<option value="3">Mart</option>
+<option value="4">Nisan</option>
+<option value="5">Mayıs</option>
+<option value="6">Haziran</option>
+<option value="7">Temmuz</option>
+<option value="8">Ağustos</option>
+<option value="9">Eyl&#252;l</option>
+<option value="10">Ekim</option>
+<option value="11">Kasım</option>
+<option value="12">Aralık</option>
+</select>
+        </div>
+
+
+        <div class="form-group col-md-3" style="width:20.83%">
+            <select class="form-control" data-val="true" data-val-number="The field RuhsatTuruId must be a number." data-val-required="The RuhsatTuruId field is required." id="Filtre_RuhsatTuruId" name="Filtre.RuhsatTuruId"><option value="0">Ruhsat T&#252;r&#252; Se&#231;iniz</option>
+<option value="1">İTHAL</option>
+<option value="2">İMAL</option>
+</select>
+        </div>
+
+        <div class="form-group col-md-3" style="width:20.83%">
+            <select class="form-control" data-val="true" data-val-number="The field RuhsatDurumuId must be a number." data-val-required="The RuhsatDurumuId field is required." id="Filtre_RuhsatDurumuId" name="Filtre.RuhsatDurumuId"><option value="0">RUHSAT DURUMLARI</option>
+<option value="1">Ruhsatlı</option>
+<option value="4">İptal Edildi</option>
+<option value="9">Kısıtlı Kullanım</option>
+</select>
+        </div>
+
+        <div class="form-group col-md-2">
+            <select class="form-control" data-val="true" data-val-number="The field RuhsatVerilisNedeniId must be a number." data-val-required="The RuhsatVerilisNedeniId field is required." id="Filtre_RuhsatVerilisNedeniId" name="Filtre.RuhsatVerilisNedeniId"><option value="0">VERİLİŞ NEDENİ</option>
+<option value="12">BK&#220; İsim Değişikliği</option>
+<option value="31">BME</option>
+<option value="4">Denenerek</option>
+<option value="2">Devir</option>
+<option value="3">Emsal</option>
+<option value="8">G&#246;r&#252;n&#252;ş Değişikliği</option>
+<option value="13">Ruhsat D&#252;zeltme</option>
+<option value="5">Ruhsat Sahibi Firma Adres Değişikliği</option>
+<option value="11">Ruhsat Sahibi Firma İsim Değişikliği</option>
+<option value="7">Ruhsat Sahibi Firma &#220;nvan Değişikliği</option>
+<option value="38">Taşıyıcı Materyal Değişikliği</option>
+<option value="1">Temdit</option>
+<option value="10">&#220;retici Firma Adres Değişikliği</option>
+<option value="17">&#220;retici Firma Değişikliği</option>
+<option value="21">&#220;retici Firma İsim Değişikliği</option>
+<option value="26">&#220;retici Firma &#220;nvan Değişikliği</option>
+<option value="32">&#220;retici Firmanın Ruhsata İlavesi</option>
+<option value="22">&#220;retim Tesisi Adres Değişikliği</option>
+<option value="36">&#220;retim Tesisi Değişikliği</option>
+<option value="34">&#220;retim Tesisi İsim Değişikliği</option>
+<option value="35">&#220;retim Tesisi &#220;nvan Değişikliği</option>
+<option value="37">&#220;retim Tesisinin Ruhsata İlavesi</option>
+<option value="6">Yeni Ruhsat</option>
+<option value="18">Zayi</option>
+</select>
+        </div>
+
+    </div>
+</form>
+
+
+<table id="tablo" class="table table-striped bg-info dt-responsive" style="width: 100%">
+    <thead></thead>
+    <tbody></tbody>
+</table>
+
+<br />
+<br />
+
+
+
+                <div class="navbar-fixed-bottom text-left ozel-bottom">
+
+                    <div class="container" style="opacity: .6;">
+                        T&#252;m Hakları Saklıdır &copy; 2015-2026 | T.C. Tarım ve Orman Bakanlığı Bitki Koruma &#220;r&#252;nleri Daire Başkanlığı tarafından yapılmıştır.
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+    <script src="/bundles/jquery?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
+
+    <script src="/bundles/bootstrap?v=gaS8ksF0U8YYRyqGHTWvkSNiIzbtTYXNIS5RdRDV8O01"></script>
+
+    
+    <script src="/bundles/unobtrusiveajax?v=Xuam6TWPhcGt1QT7p5fexG3T-XZA9hjh88zJ89jkDQQ1"></script>
+
+
+    <script src="/bundles/select2?v=o0ow8MLcBD_MvrSxY7QJr8Q_5Uc3w8F86dvh37-fy5U1"></script>
+
+
+    <script src="/bundles/datatablesTemelParcalar?v=aUjvWF8Lv664zE_2d5xGB-41vKFlWZpOhnpM_pQaFP81"></script>
+
+
+    <script src="/bundles/datatables2?v=5BCX7Bmmfv68_Af5nwPzJRH8CEXIKO6SvS0dWgg5ny01"></script>
+
+
+    <script src="/Scripts/TypeScriptKodlari/tarihMetodlari.js"></script>
+    <script src="/Scripts/TypeScriptKodlari/Ruhsat/ruhsatIndeks.js"></script>
+
+    <script>
+        var dataKey = "ruhsatIndeks";     
+    </script>
+
+</body>
+</html>
+
+
+
+

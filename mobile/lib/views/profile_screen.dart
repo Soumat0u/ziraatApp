@@ -6,9 +6,14 @@ import '../core/theme.dart';
 import '../core/theme_provider.dart';
 import '../core/auth_provider.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,13 +66,6 @@ class ProfileScreen extends StatelessWidget {
           fontSize: 18,
         ),
       ),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.logout_rounded, color: Colors.red),
-          onPressed: () => _showLogoutDialog(context),
-        ),
-        const SizedBox(width: 8),
-      ],
     );
   }
 
@@ -149,13 +147,21 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
         if (auth.isSeller && auth.companyName.isNotEmpty) ...[
-          const SizedBox(height: 4),
-          Text(
-            auth.companyName,
-            style: GoogleFonts.inter(
-              fontSize: 13,
-              color: AppTheme.primaryGreen,
-              fontWeight: FontWeight.w600,
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.04),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.08)),
+            ),
+            child: Text(
+              auth.companyName,
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                color: AppTheme.primaryGreen,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ],

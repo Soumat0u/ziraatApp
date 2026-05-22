@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class AIService {
   // Emülatörde 10.0.2.2, gerçek cihazda bilgisayarınızın IP'sini yazın
-  static const String _baseUrl = 'http://10.0.2.2:8000';
+  static const String _baseUrl = 'http://192.168.1.102:8000';
 
   /// Django backend'e soru gönderir ve AI cevabını döndürür.
   static Future<Map<String, dynamic>> askQuestion(String question) async {

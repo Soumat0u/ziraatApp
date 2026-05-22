@@ -29,6 +29,8 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
   final _regPasswordConfirmController = TextEditingController();
   final _regCompanyController = TextEditingController();
   final _regTaxController = TextEditingController();
+  final _regAddressController = TextEditingController();
+  final _regCompanyCodeController = TextEditingController();
 
   bool _isLoading = false;
   String _errorMessage = '';
@@ -62,6 +64,8 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
     _regPasswordConfirmController.dispose();
     _regCompanyController.dispose();
     _regTaxController.dispose();
+    _regAddressController.dispose();
+    _regCompanyCodeController.dispose();
     super.dispose();
   }
 
@@ -123,9 +127,15 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
       setState(() => _errorMessage = 'Şifre en az 6 karakter olmalıdır.');
       return;
     }
-    if (_selectedAccountType == 'SELLER' && _regCompanyController.text.trim().isEmpty) {
-      setState(() => _errorMessage = 'Firma adı zorunludur.');
-      return;
+    if (_selectedAccountType == 'SELLER') {
+      if (_regCompanyController.text.trim().isEmpty) {
+        setState(() => _errorMessage = 'Firma adı zorunludur.');
+        return;
+      }
+      if (_regAddressController.text.trim().isEmpty) {
+        setState(() => _errorMessage = 'Adres bilgisi zorunludur.');
+        return;
+      }
     }
 
     setState(() {
@@ -143,6 +153,8 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
         phoneNumber: _regPhoneController.text.trim(),
         companyName: _regCompanyController.text.trim(),
         taxNumber: _regTaxController.text.trim(),
+        address: _regAddressController.text.trim(),
+        companyCode: _regCompanyCodeController.text.trim(),
       );
       if (!mounted) return;
       Provider.of<AuthProvider>(context, listen: false).setLoggedIn(data);
@@ -621,9 +633,54 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                           ),
                           const SizedBox(height: 14),
                           _buildTextField(
+                            controller: _regAddressController,
+                            label: 'Firma Adresi',
+                            icon: Icons.location_on_outlined,
+                          ),
+                          const SizedBox(height: 14),
+                          _buildTextField(
                             controller: _regTaxController,
                             label: 'Vergi No (opsiyonel)',
                             icon: Icons.receipt_long_outlined,
+                          ),
+                          const SizedBox(height: 14),
+                          TextField(
+                            controller: _regCompanyCodeController,
+                            textCapitalization: TextCapitalization.characters,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9]')),
+                              LengthLimitingTextInputFormatter(6),
+                              _UpperCaseTextFormatter(),
+                            ],
+                            style: GoogleFonts.inter(color: Colors.white, fontSize: 15, letterSpacing: 4),
+                            decoration: InputDecoration(
+                              labelText: 'Firma Kodu (varsa)',
+                              labelStyle: GoogleFonts.inter(
+                                color: Colors.white.withOpacity(0.4),
+                                fontSize: 14,
+                              ),
+                              helperText: 'Mevcut firmaya katılmak için kodu girin',
+                              helperStyle: GoogleFonts.inter(
+                                color: Colors.white.withOpacity(0.3),
+                                fontSize: 11,
+                              ),
+                              prefixIcon: Icon(Icons.vpn_key_rounded, color: AppTheme.leafGreen.withOpacity(0.7), size: 20),
+                              filled: true,
+                              fillColor: Colors.white.withOpacity(0.06),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: const BorderSide(color: AppTheme.leafGreen),
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                            ),
                           ),
                         ],
                         const SizedBox(height: 14),
@@ -843,6 +900,19 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _UpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    return TextEditingValue(
+      text: newValue.text.toUpperCase(),
+      selection: newValue.selection,
     );
   }
 }

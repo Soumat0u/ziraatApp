@@ -86,6 +86,20 @@ def register_view(request):
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
 
+        company_code = data.get('company_code', '').strip().upper()
+
+        if company_code:
+            # Mevcut firmaya katıl
+            from .models import Company
+            company = Company.objects.get(secret_code=company_code)
+            is_owner = False
+        else:
+            # Yeni firma oluştur
+            from .models import Company, CashRegister
+            company = Company.objects.create(name=data['company_name'])
+            CashRegister.objects.create(company=company)
+            is_owner = True
+
         profile = SellerProfile.objects.create(
             first_name=data['first_name'],
             last_name=data['last_name'],
@@ -94,6 +108,9 @@ def register_view(request):
             password_hash=data['password'],
             company_name=data['company_name'],
             tax_number=data.get('tax_number', ''),
+            address=data.get('address', ''),
+            company=company,
+            is_owner=is_owner,
         )
         token = _create_auth_token(profile, 'SELLER')
         profile_data = SellerProfileSerializer(profile).data

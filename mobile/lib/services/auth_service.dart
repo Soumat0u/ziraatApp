@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  static const String _baseUrl = 'http://10.0.2.2:8000/api';
+  static const String _baseUrl = 'http://192.168.1.102:8000/api';
   static const String _tokenKey = 'auth_token';
   static const String _userKey = 'auth_user';
   static const String _accountTypeKey = 'account_type';
@@ -18,6 +18,8 @@ class AuthService {
     String? phoneNumber,
     String? companyName,
     String? taxNumber,
+    String? address,
+    String? companyCode,
   }) async {
     final body = <String, dynamic>{
       'account_type': accountType,
@@ -33,6 +35,12 @@ class AuthService {
       body['company_name'] = companyName ?? '';
       if (taxNumber != null && taxNumber.isNotEmpty) {
         body['tax_number'] = taxNumber;
+      }
+      if (address != null && address.isNotEmpty) {
+        body['address'] = address;
+      }
+      if (companyCode != null && companyCode.isNotEmpty) {
+        body['company_code'] = companyCode.toUpperCase();
       }
     }
 

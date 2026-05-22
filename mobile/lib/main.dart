@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile/views/ai_expert_screen.dart';
-import 'package:mobile/views/orders_screen.dart';
 import 'package:mobile/views/profile_screen.dart';
-import 'package:mobile/views/all_products_screen.dart';
 import 'package:mobile/views/auth_screen.dart';
+import 'package:mobile/views/workplace_screen.dart';
 import 'core/theme.dart';
 import 'views/customer_home.dart';
 import 'views/seller_dashboard.dart';
@@ -131,24 +130,45 @@ class _MainShellState extends State<MainShell> {
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthProvider>(context);
     final isSeller = auth.isSeller;
+    final showWorkplace = isSeller && auth.isOwner;
 
-    final List<Widget> screens = [
-      // index 0: Müşteri ise Mağaza, Satıcı ise Satıcı Paneli
-      if (isSeller)
-        const SellerDashboardScreen()
-      else
-        const CustomerHomeScreen(),
-      const AllProductsScreen(),    // index 1: Katalog
-      const AIExpertScreen(),        // index 2: Ziraat AI
-      const OrdersScreen(),          // index 3: Siparişlerim
-      const ProfileScreen(),         // index 4: Hesabım
-    ];
+    final List<Widget> screens = [];
+    final List<Map<String, dynamic>> navItems = [];
+
+    // Panel / Ana Sayfa
+    screens.add(isSeller ? const SellerDashboardScreen() : const CustomerHomeScreen());
+    navItems.add({
+      'icon': isSeller ? Icons.dashboard_rounded : Icons.home_rounded,
+      'label': isSeller ? 'Panel' : 'Ana Sayfa',
+    });
+
+    // İşyerim (Sadece admin satıcılar için)
+    if (showWorkplace) {
+      screens.add(const WorkplaceScreen());
+      navItems.add({
+        'icon': Icons.storefront_rounded,
+        'label': 'İşyerim',
+      });
+    }
+
+    // Ziraat AI
+    screens.add(const AIExpertScreen());
+    navItems.add({
+      'icon': Icons.smart_toy_outlined,
+      'label': 'Ziraat AI',
+    });
+
+    // Hesabım
+    screens.add(const ProfileScreen());
+    navItems.add({
+      'icon': Icons.person_outline_rounded,
+      'label': 'Hesabım',
+    });
+
+    final activeIndex = _currentIndex >= screens.length ? 0 : _currentIndex;
 
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: screens,
-      ),
+      body: screens[activeIndex],
       bottomNavigationBar: SafeArea(
         child: Container(
           decoration: BoxDecoration(
@@ -164,17 +184,15 @@ class _MainShellState extends State<MainShell> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Row(
-              children: [
-                _navItem(
-                  index: 0,
-                  icon: isSeller ? Icons.dashboard_rounded : Icons.home_rounded,
-                  label: isSeller ? 'Panel' : 'Ana Sayfa',
-                ),
-                _navItem(index: 1, icon: Icons.menu_book_rounded, label: 'Katalog'),
-                _navItem(index: 2, icon: Icons.smart_toy_outlined, label: 'Ziraat AI'),
-                _navItem(index: 3, icon: Icons.shopping_bag_outlined, label: 'Siparişlerim'),
-                _navItem(index: 4, icon: Icons.person_outline_rounded, label: 'Hesabım'),
-              ],
+              children: List.generate(navItems.length, (index) {
+                final item = navItems[index];
+                return _navItem(
+                  index: index,
+                  icon: item['icon'] as IconData,
+                  label: item['label'] as String,
+                  activeIndex: activeIndex,
+                );
+              }),
             ),
           ),
         ),
@@ -182,8 +200,13 @@ class _MainShellState extends State<MainShell> {
     );
   }
 
-  Widget _navItem({required int index, required IconData icon, required String label}) {
-    final isActive = _currentIndex == index;
+  Widget _navItem({
+    required int index,
+    required IconData icon,
+    required String label,
+    required int activeIndex,
+  }) {
+    final isActive = activeIndex == index;
     return Expanded(
       child: GestureDetector(
         onTap: () {

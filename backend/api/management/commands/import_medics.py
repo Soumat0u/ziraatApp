@@ -1,6 +1,6 @@
 import time
 from django.core.management.base import BaseCommand
-from api.models import Medicine, Category
+from api.models import Product, Category
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By

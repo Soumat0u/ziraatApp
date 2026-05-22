@@ -119,7 +119,7 @@ class _LicensedMedicsScreenState extends State<LicensedMedicsScreen> {
       child: Container(
         decoration: BoxDecoration(color: Theme.of(context).cardColor),
         child: SafeArea(
-          bottom: false,
+          bottom: true,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
             child: Row(

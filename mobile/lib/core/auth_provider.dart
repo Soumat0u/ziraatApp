@@ -17,7 +17,9 @@ class AuthProvider extends ChangeNotifier {
   String get email => _user?['email'] ?? '';
   String get firstName => _user?['first_name'] ?? '';
   String get lastName => _user?['last_name'] ?? '';
-  String get companyName => _user?['company_name'] ?? '';
+  String get companyName => _user?['company_name_display'] ?? _user?['company_name'] ?? '';
+  String get companyCode => _user?['company_code'] ?? '';
+  bool get isOwner => _user?['is_owner'] ?? false;
   bool get isCustomer => _accountType == 'CUSTOMER';
   bool get isSeller => _accountType == 'SELLER';
 

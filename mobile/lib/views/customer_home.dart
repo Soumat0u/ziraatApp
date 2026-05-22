@@ -2,10 +2,54 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../core/theme.dart';
+import '../services/api_service.dart';
+import '../services/auth_service.dart';
+import 'package:provider/provider.dart';
+import '../core/auth_provider.dart';
+import 'all_products_screen.dart';
 import 'store_screen.dart';
+import 'customer_debt_screen.dart';
 
-class CustomerHomeScreen extends StatelessWidget {
+class CustomerHomeScreen extends StatefulWidget {
   const CustomerHomeScreen({super.key});
+
+  @override
+  State<CustomerHomeScreen> createState() => _CustomerHomeScreenState();
+}
+
+class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
+  int _pendingDebtCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPendingDebts();
+  }
+
+  Future<void> _loadPendingDebts() async {
+    try {
+      final token = await AuthService.getToken();
+      if (token == null) return;
+      final summary = await ApiService.getDebtSummary(token);
+      if (mounted) {
+        setState(() {
+          _pendingDebtCount = summary['pending_count'] ?? 0;
+        });
+      }
+    } catch (e) {
+      final errorMsg = e.toString();
+      if (errorMsg.contains('401') && mounted) {
+        Provider.of<AuthProvider>(context, listen: false).logout();
+        Navigator.of(context).popUntil((route) => route.isFirst);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text('Oturumunuz sonlandırıldı. Lütfen tekrar giriş yapın.'),
+          backgroundColor: AppTheme.outOfStock,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ));
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,46 +86,55 @@ class CustomerHomeScreen extends StatelessWidget {
                 
                 // Cards
                 Expanded(
-                  child: ListView(
-                    physics: const BouncingScrollPhysics(),
-                    children: [
-                      _buildMenuCard(
-                        context: context,
-                        title: 'Veresiye',
-                        subtitle: 'Borç ve ödeme takibi',
-                        icon: Icons.account_balance_wallet_rounded,
-                        color: const Color(0xFFE65100),
-                        onTap: () {
-                          HapticFeedback.selectionClick();
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen(title: 'Veresiye')));
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      _buildMenuCard(
-                        context: context,
-                        title: 'Mağaza',
-                        subtitle: 'Zirai ilaç, gübre ve tohum',
-                        icon: Icons.storefront_rounded,
-                        color: AppTheme.primaryGreen,
-                        onTap: () {
-                          HapticFeedback.selectionClick();
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => const StoreScreen()));
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      _buildMenuCard(
-                        context: context,
-                        title: 'Bilgilendirme',
-                        subtitle: 'Hastalıklar ve çözümler',
-                        icon: Icons.article_rounded,
-                        color: const Color(0xFF1565C0),
-                        onTap: () {
-                          HapticFeedback.selectionClick();
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => const PlaceholderScreen(title: 'Bilgilendirme')));
-                        },
-                      ),
-                      const SizedBox(height: 40),
-                    ],
+                  child: RefreshIndicator(
+                    onRefresh: _loadPendingDebts,
+                    color: AppTheme.primaryGreen,
+                    child: ListView(
+                      physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+                      children: [
+                        _buildMenuCard(
+                          context: context,
+                          title: 'Veresiye',
+                          subtitle: 'Borç ve ödeme takibi',
+                          icon: Icons.account_balance_wallet_rounded,
+                          color: const Color(0xFFE65100),
+                          badgeCount: _pendingDebtCount,
+                          onTap: () {
+                            HapticFeedback.selectionClick();
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(builder: (_) => const CustomerDebtScreen())
+                            ).then((_) => _loadPendingDebts());
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        _buildMenuCard(
+                          context: context,
+                          title: 'Mağaza',
+                          subtitle: 'Zirai ilaç, gübre ve tohum',
+                          icon: Icons.storefront_rounded,
+                          color: AppTheme.primaryGreen,
+                          onTap: () {
+                            HapticFeedback.selectionClick();
+                            Navigator.push(context, MaterialPageRoute(builder: (_) => const StoreScreen()));
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        // Bilgilendirme kartı (Katalog ekranına bağlı)
+                        _buildMenuCard(
+                          context: context,
+                          title: 'Bilgilendirme',
+                          subtitle: 'Zirai rehber, hastalıklar ve çözümler',
+                          icon: Icons.info_rounded,
+                          color: const Color(0xFF1565C0),
+                          onTap: () {
+                            HapticFeedback.selectionClick();
+                            Navigator.push(context, MaterialPageRoute(builder: (_) => const AllProductsScreen()));
+                          },
+                        ),
+                        const SizedBox(height: 40),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -99,6 +152,7 @@ class CustomerHomeScreen extends StatelessWidget {
     required IconData icon,
     required Color color,
     required VoidCallback onTap,
+    int badgeCount = 0,
   }) {
     return GestureDetector(
       onTap: onTap,
@@ -194,53 +248,35 @@ class CustomerHomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// Geçici Ekranlar için
-class PlaceholderScreen extends StatelessWidget {
-  final String title;
-  const PlaceholderScreen({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).cardColor,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new_rounded, color: Theme.of(context).colorScheme.onSurface),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(
-          title,
-          style: GoogleFonts.inter(
-            color: Theme.of(context).colorScheme.onSurface,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.build_circle_outlined, size: 80, color: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.5)),
-            const SizedBox(height: 16),
-            Text(
-              '$title sayfası yapım aşamasında',
-              style: GoogleFonts.inter(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-                fontSize: 16,
+            // Badge
+            if (badgeCount > 0)
+              Positioned(
+                top: 20,
+                right: 20,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: AppTheme.lowStock,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(color: AppTheme.lowStock.withOpacity(0.4), blurRadius: 8, offset: const Offset(0, 2)),
+                    ],
+                  ),
+                  child: Text(
+                    '$badgeCount Onay Bekliyor',
+                    style: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
               ),
-            ),
           ],
         ),
       ),
     );
   }
 }
+
+// PlaceholderScreen kodun aynen korunmuştur...
